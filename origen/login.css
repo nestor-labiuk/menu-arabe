@@ -1,0 +1,16 @@
+.form-group span {
+  font-family: unset;
+  color: #722620;
+  padding-top: .25rem;
+  margin: 0;
+}
+.btn.btn-outline-pink-login{
+  border: 1px solid #F2BC94;
+  color: #F2BC94;
+  background-color: transparent;
+}
+.btn.btn-outline-pink-login:hover{
+  border: 1px solid #F2BC94;
+  color: white;
+  background-color: #F2BC94;
+}
