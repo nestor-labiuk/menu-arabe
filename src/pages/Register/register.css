@@ -1,0 +1,37 @@
+.register__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+  color: var(--text-color);
+}
+
+.register__form{
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__form input{
+  margin: 15px 0;
+  color: #222;
+}
+
+input{
+  height: 35px;
+  padding: 10px;
+}
+
+.register__title{
+  color: var(--text-color);
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+.register__button{
+  background-color: var(--background-color-button);
+  height: 35px;
+  margin: 10px;
+  border-radius: 10px;
+}
