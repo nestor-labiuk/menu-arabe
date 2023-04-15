@@ -8,7 +8,7 @@ function Home() {
     <main className='container-fluid pt-5 px-0 main'>
       <h1 className='text-center pb-3'>Comida Árabe</h1>
       <div className='text-center ' >
-        <img src={baba} class='img-fluid m-0 p-0 ' alt='Imagen de comida árabe'></img>
+        <img src={baba} className='img-fluid m-0 p-0 ' alt='Imagen de comida árabe'></img>
       </div>
       <div className='text-center mx-2'>
         <h2 className='pt-5'>Preparáte para degustar la mejor comida árabe en Tucumán</h2>
