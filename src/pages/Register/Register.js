@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form'
 import './register.css'
+import Button from '../../components/Button/Button'
+import { Link } from 'react-router-dom'
 
 const FormRegister = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  
+
   const createUsers = async (body) => {
     try {
       const response = await fetch('http://localhost:8080/api/users', {
@@ -14,7 +16,7 @@ const FormRegister = () => {
       const data = await response.json()
       console.log(data)
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
   }
 
@@ -49,7 +51,7 @@ const FormRegister = () => {
           type='text' {...register('adress', { required: true, })}
         />
         {errors.exampleRequired && <span>This field is required</span>}
-       
+
         <input
           maxLength={12}
           placeholder='teléfono'
@@ -69,6 +71,9 @@ const FormRegister = () => {
         <input type='reset' value='Reset' />
 
       </form>
+      <div className='d-flex justify-content-around main-buttons'>
+        <Link to='/'><Button name='Volver' /></Link>
+      </div>
     </div>
   )
 }
