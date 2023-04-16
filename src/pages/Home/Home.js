@@ -1,4 +1,4 @@
-import './home.css'
+import './Home.css'
 import baba from '../../assets/img/fondo.jpg'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
