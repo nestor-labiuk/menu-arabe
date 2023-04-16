@@ -1,0 +1,13 @@
+.main {
+  height: 100vh;
+  background-color: var(--color-wine);
+  color: var(--color-white);
+}
+
+.main-p {
+  color: var(--color-brown);
+}
+
+.main-buttons {
+  width: 400px;
+}

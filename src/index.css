@@ -1,4 +1,23 @@
 :root{
-  --color-prueba: #333;
+  --color-beige : #F2BC94;
+  --color-brown : #30110D;
+  --color-wine : #722620;
+  --color-black : #222; 
+  --color-white : #ddd;
+}
+
+*{
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg-color);
+  
 }
 
