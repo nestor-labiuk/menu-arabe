@@ -1,37 +1,48 @@
-.register__container{
+/* .register__container{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px 0;
   color: var(--text-color);
+} */
+.register-main{
+  height: 100vh;
+  background-color: var(--color-wine);
 }
 
-.register__form{
+.register-title{
+  color: var(--color-white);
+}
+
+.register-form{
   width: 250px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
-.register__form input{
+.register-form input{
+  border-radius: 5px;
   margin: 15px 0;
-  color: #222;
+  color: var(--color-white);
+  padding: 7px;
+  background-color: var(--color-brown);
 }
 
-input{
+/* .refister-form input{
   height: 35px;
   padding: 10px;
-}
+} */
 
-.register__title{
+/* .register__title{
   color: var(--text-color);
   text-align: center;
   font-size: 2rem;
   margin-top: 20px;
-}
+} */
 
-.register__button{
+/* .register__button{
   background-color: var(--background-color-button);
   height: 35px;
   margin: 10px;
   border-radius: 10px;
-}
+} */
