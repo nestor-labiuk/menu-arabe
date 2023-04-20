@@ -1,5 +1,5 @@
 import './Home.css'
-import fondo from '../../assets/img/fondo-sin-marca-recortada.jpg'
+import fondo from '../../assets/img/background.jpg'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
 
