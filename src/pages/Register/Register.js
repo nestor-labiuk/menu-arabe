@@ -2,6 +2,9 @@ import { useForm } from 'react-hook-form'
 import './register.css'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
+import React from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const FormRegister = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -14,6 +17,7 @@ const FormRegister = () => {
         headers: { 'Content-Type': 'application/json' }
       })
       const data = await response.json()
+      toast('hola')
       console.log(data)
     } catch (error) {
       console.log(error)
@@ -68,7 +72,7 @@ const FormRegister = () => {
           <Link to='/'><Button name='Volver' /></Link>
         </div>
       </div>
-      
+      <ToastContainer />
     </div>
   )
 }
