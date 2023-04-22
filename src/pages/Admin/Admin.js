@@ -1,5 +1,5 @@
 import './admin.css'
-import baba from '../../assets/img/fondo.jpg'
+import fondo from '../../assets/img/background.jpg'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ function Admin() {
     <main className='container-fluid pt-5 px-0 main-admin'>
       <h1 className='text-center pb-3'>Administración</h1>
       <div className='text-center ' >
-        <img src={baba} className='img-fluid m-0 p-0 ' alt='Imagen de comida árabe' />
+        <img src={fondo} className='img-fluid m-0 p-0 ' alt='Imagen de comida árabe' />
       </div>
       <div className='d-flex justify-content-center mt-5'>
         <div className='d-flex justify-content-around main-admin-buttons'>
