@@ -15,7 +15,7 @@ function Home() {
         <p className='fs-5 p-3 main-p'>Te invitamos a visitar nuestro local en el barrio Gral. Paz. </p>
       </div>
       <div className='d-flex justify-content-center'>
-        <div className='d-flex justify-content-around main-buttons'>
+        <div className='d-flex justify-content-around flex-column flex-sm-row  align-items-center main-buttons gap-4'>
           <Link to='register'><Button name='Menú'/></Link>
           <Link to='register'><Button name='Ingresa'/></Link>
           <Link to='register'><Button name='Registrate'/></Link>
