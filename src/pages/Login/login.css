@@ -1,0 +1,24 @@
+.form-group span {
+  font-family: -apple-system;
+  color: #722620;
+  padding-top: .25rem;
+  margin: 0;
+}
+.btn.btn-outline-pink-login{
+  border: 1px solid #F2BC94;
+  color:#222;
+  background-color: transparent;
+}
+
+
+.login__title{
+  color: var(--text-color);
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 20px;
+}
+.btn.btn-outline-pink-login:hover{
+  border: 1px solid #30110D;
+  color: #F2BC94;
+  background-color: #30110D;
+}
