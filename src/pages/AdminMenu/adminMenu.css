@@ -1,9 +1,20 @@
-.main-admin {
-  height: 100vh;
-  background-color: var(--color-wine);
-  color: var(--color-white);
-}
 
 .main-admin-buttons {
   width: 400px;
 }
+
+.colorBack{
+  background-color: var(--color-wine) important!;
+}
+
+.adminMenu{
+  background-color: var(--color-wine);
+  color: var(--color-white);
+  min-height: 100vh;
+}
+
+@media (max-width: 576px) {
+  .borrar{
+    display: none;
+  }
+ }
