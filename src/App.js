@@ -3,9 +3,7 @@ import './App.css'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
 import Admin from './pages/Admin/Admin'
-import AdminMenu from './pages/AdminMenu/AdminMenu'
-import RegisterMenu from './pages/RegisterMenu/RegisterMenu'
-import EditMenu from './pages/EditMenu/EditMenu'
+import Login from './pages/Login/login'
 
 function App() {
   return (
@@ -18,6 +16,7 @@ function App() {
         <Route path='/admin/menu/registermenu' element={<RegisterMenu />} />
         <Route path='/admin/menu/:id' element={<EditMenu />} />
         {/* aca hay que agregar las rutas que faltan */}
+        <Route path='/login' element={<Login />} />
       </Routes>
     </>
   );

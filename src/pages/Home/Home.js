@@ -17,7 +17,7 @@ function Home() {
       <div className='d-flex justify-content-center'>
         <div className='d-flex justify-content-around flex-column flex-sm-row  align-items-center main-buttons gap-4'>
           <Link to='register'><Button name='Menú'/></Link>
-          <Link to='register'><Button name='Ingresa'/></Link>
+          <Link to='login'><Button name='Logueo'/></Link>
           <Link to='register'><Button name='Registrate'/></Link>
           <Link to='admin'><Button name='Admin'/></Link>
         </div>
