@@ -20,7 +20,7 @@ function ButtonDelete(props) {
       toast.success('Eliminando...', {
         theme: 'dark'
       })
-      setTimeout(reinicio,4000)
+      setTimeout(reinicio,3000)
   }
 
   return (

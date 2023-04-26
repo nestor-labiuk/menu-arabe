@@ -18,6 +18,7 @@ const FormRegister = () => {
       })
       const data = await response.json()
 
+
       if (data?.errors) {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'

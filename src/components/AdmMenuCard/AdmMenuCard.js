@@ -16,7 +16,7 @@ function AdmMenuCard({ _id, name, state, price, detail,category,image }) {
           <td className='border border-black col-4 text-center col-sm-1 '>
             <ButtonDelete name={_id} />
             <Link to={`/admin/menu/${_id}`}>
-              <ButtonEdit/>
+              <ButtonEdit name={_id}/>
             </Link>
             </td>
         </tr>

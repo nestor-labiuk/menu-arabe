@@ -2,17 +2,35 @@ import { useForm } from 'react-hook-form'
 import '../Register/register.css'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
-import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import React, { useEffect, useState } from 'react'
 
-const FormRegister = () => {
-  const { register, handleSubmit, formState: { errors }, reset} = useForm()
+function EditMenu() {
+  const [menu, setMenus] = useState([])
+  const id = localStorage.getItem('id')
+  const fetchMenu = async () => {
+    const response = await fetch(`http://localhost:8080/api/menu/${id}`)
+    const data = await response.json()
+    setMenus(data.menu)
+  }
+
+  useEffect(() => {
+    fetchMenu()
+  }, [])
+
+  const preloadMenu = {
+    namen: menu.name,
+
+  }
+
+  const { register, handleSubmit, formState: { errors }, reset} = useForm({defaultValues : preloadMenu})
+
 
   const EditMenu = async (body) => {
     try {
-      const response = await fetch('http://localhost:8080/api/menu', {
-        method: 'POST',
+      const response = await fetch(`http://localhost:8080/api/menu/%${id}`, {
+        method: 'PUT',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
       })
@@ -34,9 +52,13 @@ const FormRegister = () => {
       })
     }
   }
+  const moveback = () => {
+    window.location.href = 'http://localhost:3000/admin/menu'
+  }
   const onSubmit = body => {
     EditMenu(body)
     reset()
+    moveback()
   }
 
   return (
@@ -45,56 +67,66 @@ const FormRegister = () => {
         <h1 className='text-center p-3 register-title'>Editar Menú</h1>
         <div className=' d-flex justify-content-center'>
           <form className='d-flex flex-column  register-form' onSubmit={handleSubmit(onSubmit)}>
-            <label for='nombre'>Nombre</label>
+          <label for='idn'>ID</label>
             <input
-              defaultValue=''
-              placeholder='Sfijas'
-              maxLength={30}
-              type='text'{...register('name', { required: true, minLength: 3, maxLength: 30 })}
+              value={id}
+              type='text'{...register('idn', { required: true, minLength: 3, maxLength: 30 })}
             />
-            {errors.name?.type === 'required' && <span>Campo requerido</span>}
-            {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <label for='state'>Estado</label>
+            <label for='namen'>Nombre</label>
             <input
-              placeholder='Disponible'
-              maxLength={30}
-              type='text' {...register('state', { required: true, minLength: 3, maxLength: 30 })}
+              // defaultValue={menu.name}
+              placeholder={menu.name}
+              maxLength={50}
+              type='text'{...register('namen', { required: true, minLength: 3, maxLength: 50 })}
             />
-            {errors.state?.type === 'required' && <span>Campo requerido</span>}
-            {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <label for='price'>Precio</label>
+            {errors.namen?.type === 'required' && <span>Campo requerido</span>}
+            {errors.namen?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            <label for='staten'>Estado</label>
             <input
-              placeholder='1000'
+              defaultValue={menu.state}
+              placeholder={menu.state}
+              maxLength={30}
+              type='text' {...register('staten', { required: true, minLength: 3, maxLength: 30 })}
+            />
+            {errors.staten?.type === 'required' && <span>Campo requerido</span>}
+            {errors.staten?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            <label for='pricen'>Precio</label>
+            <input
+              defaultValue={menu.price}n
+              placeholder={menu.price}
               maxLength={7}
-              type='text' {...register('price', { required: true, minLength: 2, pattern: /^[0-9]+$/, maxLength: 7})}
+              type='text' {...register('pricen', { required: true, minLength: 2, pattern: /^[0-9]+$/, maxLength: 7})}
             />
-            {errors.price?.type === 'required' && <span>Campo requerido</span>}
-            {errors.price?.type === 'minLength' && <span>Longitud mínima de 2 caracteres</span>}
-            {errors.price?.type === 'pattern' && <span>Solo números</span>}
-            <label for='detail'>Detalle</label>
+            {errors.pricen?.type === 'required' && <span>Campo requerido</span>}
+            {errors.pricen?.type === 'minLength' && <span>Longitud mínima de 2 caracteres</span>}
+            {errors.pricen?.type === 'pattern' && <span>Solo números</span>}
+            <label for='detailn'>Detalle</label>
             <input
-              maxLength={20}
-              placeholder='Sin picante'
-              type='text' {...register('detail', { required: false, minLength: 4 })}
+              defaultValue={menu.detail}
+              placeholder={menu.detail}
+              maxLength={50}
+              type='text' {...register('detailn', { required: false, minLength: 4})}
             />
-            {errors.detail?.type === 'minLength' && <span>Longitus mínima de 4 caracteres</span>}
-            <label for='category'>Categoría</label>
+            {errors.detailn?.type === 'minLength' && <span>Longitus mínima de 4 caracteres</span>}
+            <label for='categoryn'>Categoría</label>
             <input
-              placeholder='Carnes'
+              defaultValue={menu.category}
+              placeholder='vegetariano'
               maxLength={30}
-              type='text' {...register('category', { required: true, minLength: 3, maxLength: 30 })}
+              type='text' {...register('categoryn', { required: true, minLength: 3, maxLength: 30 })}
             />
-            {errors.category?.type === 'required' && <span>Campo requerido</span>}
-            {errors.category?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <label for='image'>Imagen</label>
+            {errors.categoryn?.type === 'required' && <span>Campo requerido</span>}
+            {errors.categoryn?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            <label for='imagen'>Imagen</label>
             <input
+              defaultValue={menu.image}
               placeholder='https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg'
-              maxLength={100}
-              type='text' {...register('image', { required: true, minLength: 3, maxLength: 100 })}
+              maxLength={200}
+              type='text' {...register('imagen', { required: true, minLength: 3, maxLength: 200 })}
             />
-            {errors.image?.type === 'required' && <span>Campo requerido</span>}
-            {errors.image?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <input className='mt-5 register-form-submit' type='submit' value='Registrarse' />
+            {errors.imagen?.type === 'required' && <span>Campo requerido</span>}
+            {errors.imagen?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            <input className='mt-5 register-form-submit' type='submit' value='Editar' />
           </form>
         </div>
         <div className='d-flex justify-content-center p-5'>
@@ -106,4 +138,4 @@ const FormRegister = () => {
   )
 }
 
-export default FormRegister
+export default EditMenu
