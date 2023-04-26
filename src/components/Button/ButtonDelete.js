@@ -25,8 +25,8 @@ function ButtonDelete(props) {
 
   return (
     <div>
-      <button onClick={Delete}>
-        <i className="bi bi-trash3-fill px-1" ></i>
+      <button className='m-2' onClick={Delete}>
+        <i className="bi bi-trash3-fill px-2 pb-3" ></i>
       </button>
       <ToastContainer />
     </div>

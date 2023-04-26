@@ -23,7 +23,12 @@ const FormRegister = () => {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'
         })
-      } else {
+      } else if (response.status===400){
+        toast.error(`${data.message}`, {
+          theme: 'dark'
+        })
+      }
+      else {
         toast.success(`Menú ${body.name} creado`, {
           theme: 'dark'
         })
@@ -45,7 +50,7 @@ const FormRegister = () => {
       <div className='register-main p-5'>
         <h1 className='text-center p-3 register-title'>Registro</h1>
         <div className=' d-flex justify-content-center'>
-          <form className='d-flex flex-column  register-form' onSubmit={handleSubmit(onSubmit)}>
+          <form className='d-flex flex-column  register-form w-75' onSubmit={handleSubmit(onSubmit)}>
             <label for='nombre'>Nombre</label>
             <input
               placeholder='Sfijas'

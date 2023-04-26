@@ -1,5 +1,5 @@
 import './button.css'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer,} from 'react-toastify'
 
 function ButtonEdit(props) {
 
@@ -10,8 +10,8 @@ function ButtonEdit(props) {
 
   return (
     <div>
-      <button onClick={Storage}>
-        <i className="bi bi-pencil-fill px-2" ></i>
+      <button className='m-2' onClick={Storage}>
+        <i className="bi bi-pencil-fill px-2 pb-3" ></i>
       </button>
       <ToastContainer />
     </div>

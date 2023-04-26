@@ -6,7 +6,6 @@ import AdmMenuCard from '../../components/AdmMenuCard/AdmMenuCard'
 
 function AdminMenu() {
   const [menus, setMenus] = useState([])
-
   const fetchMenus = async () => {
     const response = await fetch('http://localhost:8080/api/menu')
     const data = await response.json()
