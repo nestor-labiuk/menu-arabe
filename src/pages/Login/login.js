@@ -10,7 +10,7 @@ const Login = () => {
 
   const createUsers = async (body) => {
     try {
-      const response = await fetch('', {
+      const response = await fetch('http://localhost:8080/api/users', {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
