@@ -4,6 +4,9 @@ import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
 import Admin from './pages/Admin/Admin'
 import Login from './pages/Login/login'
+import AdminMenu from './pages/AdminMenu/AdminMenu'
+import RegisterMenu from './pages/RegisterMenu/RegisterMenu'
+import EditMenu from './pages/EditMenu/EditMenu'
 
 function App() {
   return (
