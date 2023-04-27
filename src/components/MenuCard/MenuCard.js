@@ -23,7 +23,7 @@ const MenuCard = ({
 
         <footer className='card-footer pb-2'>
           <h5>${Number(price).toFixed(2)}</h5>
-          <Link to='/order' className='link-menu'>Pedir Menú</Link>
+          <Link to='/order' className='link-menuCard'>Pedir Menú</Link>
         </footer>
       </article>
 

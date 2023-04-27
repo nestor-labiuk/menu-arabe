@@ -13,13 +13,13 @@
   border: 2px solid black
 }
 
-.link-menu:hover {
+.link-menuCard:hover {
   outline-offset: 4.5px;
   background: var(--color-wine);
   color: var(--color-beige);
 }
 
-.link-menu {
+.link-menuCard {
   text-decoration: none;
   border: solid 2px var(--color-wine);
   background-color: var(--color-beige);
