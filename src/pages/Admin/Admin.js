@@ -13,7 +13,7 @@ function Admin() {
       <div className='d-flex justify-content-center mt-5'>
         <div className='d-flex justify-content-around main-admin-buttons'>
           <Link to='/admin/menu'><Button name='Menú'/></Link>
-          <Link to='/'><Button name='Clientes'/></Link>
+          <Link to='/admin/users'><Button name='Clientes'/></Link>
           <Link to='/'><Button name='Pedidos'/></Link>
         </div>
       </div>
