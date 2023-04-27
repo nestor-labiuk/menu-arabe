@@ -8,7 +8,12 @@ function AdmMenuCard({ _id, name, state, price, detail,category,image }) {
       <div className="mx-3">
         <tr className="d-flex justify-content-center">
           <td className='border border-black d-flex justify-content-center align-items-center col-4 text-center col-sm-2 ' >{name}</td>
-          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{state}</td>
+          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara m-0' >
+            { state === true
+              ? <p> Disponible </p>
+              : <p> No Disponible </p>
+            }
+          </td>
           <td className='border border-black d-flex justify-content-center align-items-center col-1 text-center borrara' >{price}</td>
           <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{detail}</td>
           <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{category}</td>

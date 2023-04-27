@@ -82,13 +82,14 @@ function EditMenu() {
             {errors.name?.type === 'required' && <span>Campo requerido</span>}
             {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
             <label for='state'>Estado</label>
-            <input
-              placeholder={menu?.state}
-              maxLength={30}
-              type='text' {...register('state', { required: true, minLength: 3, maxLength: 30 })}
-            />
-            {errors.state?.type === 'required' && <span>Campo requerido</span>}
-            {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
+              <input id="state" name="state" value="0" type="radio" {...register('state')} />
+              <label className='py-0 px-3' for="state">No Disponible</label>
+              <input id="state" name="state" value="1" type="radio" {...register('state',{ required: true})} />
+              <label className='py-0 px-3' for="state">Disponible</label>
+              {errors.state?.type === 'required' && <span>Campo requerido</span>}
+              {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+            </div>
             <label for='price'>Precio</label>
             <input
               placeholder={menu?.price}
