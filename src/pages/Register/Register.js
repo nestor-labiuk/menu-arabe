@@ -89,7 +89,10 @@ const FormRegister = () => {
             />
             {errors.password?.type === 'required' && <span>Campo requerido</span>}
             {errors.password?.type === 'minLength' && <span>Longitus mínima de 8 caracteres</span>}
-            <input className='mt-5 register-form-submit' type='submit' value='Registrarse' />
+            <div className='d-flex justify-content-center pt-5'>
+              <Button name='Registrate' >
+              <input type='submit' value='Registrarse' /></Button>
+            </div>
           </form>
         </div>
         <div className='d-flex justify-content-center p-5'>
