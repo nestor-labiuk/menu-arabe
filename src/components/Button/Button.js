@@ -1,8 +1,11 @@
 import './button.css'
 
-function Button(props) {
+function Button({ className, name, onClick }) {
   return (
-    <button className={`button ${(props.className || '')}`}>{props.name}</button>
+    <button
+      className={`button ${(className || '')}`}
+      onClick={onClick}
+      >{name}</button>
   )
 }
 
