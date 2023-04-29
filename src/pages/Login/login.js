@@ -27,20 +27,16 @@ const Login = () => {
         })
         sessionStorage.setItem('loguedUser', JSON.stringify(data) )
         setTimeout(moveback,3000)
-        
       }
     } catch (error) {
       console.log(error)
       console.log(error.message)
     }
-
-
   }
   
   const moveback = () => {
     window.history.go(-1)
   }
-
 
   const onSubmit = body => {
     createUsers(body)
@@ -71,7 +67,6 @@ const Login = () => {
               <Button name='Ingresar' >
                 <input type='submit' value='Registrarse' /></Button>
             </div>
-            
           </form>
         </div>
         <div className='d-flex justify-content-center p-5'>
