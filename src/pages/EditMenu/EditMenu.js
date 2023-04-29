@@ -88,7 +88,6 @@ function EditMenu() {
               <input id="state" name="state" value="1" type="radio" {...register('state',{ required: true})} />
               <label className='py-0 px-3' for="state">Disponible</label>
               {errors.state?.type === 'required' && <span>Campo requerido</span>}
-              {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
             </div>
             <label for='price'>Precio</label>
             <input
