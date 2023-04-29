@@ -2,11 +2,36 @@ import './Home.css'
 import fondo from '../../assets/img/background.jpg'
 import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-function Home() {
+const Home = () => {
+  const [user, setUser] = useState('')
+
+  const userJSON = sessionStorage.getItem('loguedUser')
+  const mUser = JSON.parse(userJSON)
+
+  useEffect(()=>{
+    setUser(mUser) 
+  }, [mUser])
+ 
+  const handleClick = () => {
+    sessionStorage.clear()
+  }
+
   return (
     <main className='container-fluid pt-5 px-0 main'>
-        <h1 className='text-center pb-3'>Comida Árabe</h1>
+      {
+        (user?.user?.name) &&
+        <div>
+          <p>{`Bienvenido  ${user?.user?.name}`}</p>
+          <Button
+            onClick= {handleClick}
+            name='Cerrar sesión'
+            className='main-button'
+          />
+        </div>
+      }
+      <h1 className='text-center pb-3'>Comida Árabe</h1>
       <div className='text-center ' >
         <img src={fondo} className='img-fluid m-0 p-0 ' alt='Imagen de comida árabe' />
       </div>
@@ -16,10 +41,10 @@ function Home() {
       </div>
       <div className='d-flex justify-content-center'>
         <div className='d-flex justify-content-around flex-column flex-sm-row  align-items-center main-buttons gap-4'>
-          <Link to='/menu'><Button name='Menú'/></Link>
-          <Link to='login'><Button name='Logueo'/></Link>
-          <Link to='register'><Button name='Registrate'/></Link>
-          <Link to='admin'><Button name='Admin'/></Link>
+          <Link to='/menu'><Button name='Menú' /></Link>
+          <Link to='login'><Button name='Logueo' /></Link>
+          <Link to='register'><Button name='Registrate' /></Link>
+          <Link to='admin'><Button name='Admin' /></Link>
         </div>
       </div>
     </main>
