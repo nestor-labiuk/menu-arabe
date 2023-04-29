@@ -6,22 +6,24 @@ import { useEffect, useState } from 'react'
 
 const Home = () => {
   const [user, setUser] = useState('')
+  const [isButtonVisible, setIsButtonVisible] = useState(true)
 
   const userJSON = sessionStorage.getItem('loguedUser')
   const mUser = JSON.parse(userJSON)
 
   useEffect(()=>{
     setUser(mUser) 
-  }, [mUser])
+  }, [] )
  
   const handleClick = () => {
     sessionStorage.clear()
+    setIsButtonVisible(false)
   }
 
   return (
     <main className='container-fluid pt-5 px-0 main'>
       {
-        (user?.user?.name) &&
+        (user?.user?.name) && isButtonVisible &&
         <div>
           <p>{`Bienvenido  ${user?.user?.name}`}</p>
           <Button
