@@ -25,12 +25,23 @@ const Login = () => {
         toast.success((data.messageAccess), {
           theme: 'dark'
         })
+        sessionStorage.setItem('loguedUser', JSON.stringify(data) )
+        setTimeout(moveback,3000)
+        
       }
     } catch (error) {
       console.log(error)
       console.log(error.message)
     }
+
+
   }
+  
+  const moveback = () => {
+    window.history.go(-1)
+  }
+
+
   const onSubmit = body => {
     createUsers(body)
     reset()
