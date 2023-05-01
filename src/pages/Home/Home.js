@@ -12,7 +12,8 @@ const Home = () => {
   const mUser = JSON.parse(userJSON)
 
   useEffect(()=>{
-    setUser(mUser) 
+    setUser(mUser)
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [] )
  
   const handleClick = () => {

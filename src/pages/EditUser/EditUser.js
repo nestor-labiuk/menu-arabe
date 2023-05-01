@@ -31,9 +31,9 @@ function EditUser() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const EditUser = async (body) => {
+  const editUser = async (body) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${id}`, {
+      const response = await fetch(`http://localhost:8080/api/users/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
@@ -66,7 +66,7 @@ function EditUser() {
     window.history.go(-1)
   }
   const onSubmit = body => {
-    EditUser(body)
+    editUser(body)
     
   }
 
@@ -87,9 +87,9 @@ function EditUser() {
             <label for='state'>Estado</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input id="state" name="state" value="0" type="radio" {...register('state')} />
-              <label className='py-0 px-3' for="state">No Disponible</label>
+              <label className='py-0 px-3' for="state">Activo</label>
               <input id="state" name="state" value="1" type="radio" {...register('state',{ required: true})} />
-              <label className='py-0 px-3' for="state">Disponible</label>
+              <label className='py-0 px-3' for="state">Inactivo</label>
               {errors.state?.type === 'required' && <span>Campo requerido</span>}
               {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
             </div>
@@ -126,14 +126,15 @@ function EditUser() {
             />
             {errors.password?.type === 'required' && <span>Campo requerido</span>}
             {errors.password?.type === 'minLength' && <span>Longitus mínima de 8 caracteres</span>}
-            <label for='isActive'>Estado</label>
+            <label for='isActive'>Estado admin</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input id="isActive" name="isActive" value="0" type="radio" {...register('isActive')} />
-              <label className='py-0 px-3' for="isActive">No Activo</label>
+              <label className='py-0 px-3' for="isActive">No es admin</label>
               <input id="isActive" name="isActive" value="1" type="radio" {...register('isActive',{ required: true})} />
-              <label className='py-0 px-3' for="isActive">Activo</label>
+              <label className='py-0 px-3' for="isActive">Es admin</label>
               {errors.isActive?.type === 'required' && <span>Campo requerido</span>}
             </div>
+              <input className='mt-5 register-form-submit' type='submit' value='Editar' />
             </form>
         </div>
         <div className='d-flex justify-content-center p-5'>
