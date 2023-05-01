@@ -13,7 +13,8 @@ const Home = () => {
 
   useEffect(()=>{
     setUser(mUser) 
-  }, [] )
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isButtonVisible] )
  
   const handleClick = () => {
     sessionStorage.clear()
@@ -46,7 +47,11 @@ const Home = () => {
           <Link to='/menu'><Button name='Menú' /></Link>
           <Link to='login'><Button name='Logueo' /></Link>
           <Link to='register'><Button name='Registrate' /></Link>
-          <Link to='admin'><Button name='Admin' /></Link>
+          { (user?.user?.isAdmin) &&
+            <div>
+            <Link to='admin'><Button name='Admin' /></Link>
+          </div>
+          }
         </div>
       </div>
     </main>

@@ -3,18 +3,30 @@ import './adminMenu.css'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import AdmMenuCard from '../../components/AdmMenuCard/AdmMenuCard'
+// import useToken from '../../CustomHooks/useToken'
+
 
 function AdminMenu() {
   const [menus, setMenus] = useState([])
+
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+ 
   const fetchMenus = async () => {
-    const response = await fetch('http://localhost:8080/api/menu')
+    const response = await fetch('http://localhost:8080/api/menu',{
+      method: 'GET',
+      headers: { 
+        'accesstoken': `${token}`,
+      }
+    })
     const data = await response.json()
     setMenus(data.menus)
   }
-
+  
   useEffect(() => {
     fetchMenus()
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token])
 
 
   return (
