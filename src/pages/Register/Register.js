@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form'
 import './register.css'
 import Button from '../../components/Button/Button'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const FormRegister = () => {
+  const navigateTo = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const createUsers = async (body) => {
@@ -27,8 +28,9 @@ const FormRegister = () => {
         toast.success(`Usuario ${data.user} creado`, {
           theme: 'dark'
         })
+        setTimeout(navigate,3000)
       }
-
+      
     } catch (error) {
       toast.error('No se puede registrar el usuario', {
         theme: 'dark'
@@ -36,11 +38,16 @@ const FormRegister = () => {
       console.log(error)
     }
   }
+
+ const navigate = () => {
+  navigateTo('/login')
+ }
+
   const onSubmit = body => {
     createUsers(body)
     reset()
   }
-
+  
   return (
     <div>
       <div className='register-main p-5'>
