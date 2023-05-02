@@ -6,8 +6,17 @@ import AdmUserCard from '../../components/AdmUserCard/AdmUserCard'
 
 function AdminUsers() {
   const [users, setUsers] = useState([])
+  
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const fetchUsers = async () => {
-    const response = await fetch('http://localhost:8080/api/users')
+    const response = await fetch('http://localhost:8080/api/users',{
+      method: 'GET',
+      headers: { 
+        'accesstoken': `${token}`,
+      }
+    })
     const data = await response.json()
     setUsers(data.users)
     console.log(data.users)
@@ -15,6 +24,7 @@ function AdminUsers() {
 
   useEffect(() => {
     fetchUsers()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
