@@ -5,7 +5,12 @@ function Footer(){
   return (
     <footer className="bg-light text-center text-lg-start bg-dark">
       <div className="container p-4">
-      <img src={fondo} alt="logo" style={{ width: 100 }} />
+      <img
+        className="rounded-5" 
+        src={fondo} 
+        alt="logo" 
+        style={{ width: 100 }} 
+       />
         <div className="row">
           <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
             <h5 className="text-uppercase text-white">Menú Árabe</h5>

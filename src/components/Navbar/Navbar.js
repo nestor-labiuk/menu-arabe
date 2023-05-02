@@ -8,11 +8,12 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
         <img
+          className="rounded-5"
           src={fondo}
           alt="logo"
           style={{ width: '100px', marginLeft: '20px' }}
         />
-        <Link to="/" className="navbar-brand text-white fs-2">
+        <Link to="/" className="mx-4 navbar-brand text-white fs-2">
           Menú Árabe
         </Link>
         <button
@@ -33,7 +34,7 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link to="/login" className="nav-link">
-                <Button name="Ingresa" />
+                <Button name="Logueo" />
               </Link>
             </li>
             <li className="nav-item">
