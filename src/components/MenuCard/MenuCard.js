@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import { ToastContainer, toast } from 'react-toastify'
 
 const MenuCard = ({
-  name, id, category, detail, image, price, user, menu,
+  name, id, category, detail, image, price, user,
 }) => {
   
   const makeOrder = async () => {

@@ -11,7 +11,11 @@
   -webkit-box-shadow: 1px 0px 25px 4px var(--color-wine);
 }
 
-.link-menu:hover {
+.button-menu{
+  border: solid 2px var(--color-wine)
+}
+
+/* .link-menu:hover {
   outline-offset: 4.5px;
   background: var(--color-beige);
   color: var(--color-wine);
@@ -34,4 +38,4 @@
   border-radius: 100rem;
   transition: 0.2s;
   font-weight: 600;
-}
+} */
