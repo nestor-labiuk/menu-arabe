@@ -17,7 +17,7 @@ function AdminMenu() {
     const response = await fetch(`http://localhost:8080/api/menu?from=${from}`,{
       method: 'GET',
       headers: { 
-        'accesstoken': `${token}`,
+        'accesstoken': `${token}`
       }
     })
     const data = await response.json()
@@ -77,7 +77,7 @@ function AdminMenu() {
           <Link to='/admin/menu/registermenu'><Button name='Nuevo Menú'/></Link>
         </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3'>
-          <Link to='/'><Button name='Clientes'/></Link>
+          <Link to='/admin/users'><Button name='Clientes'/></Link>
           <Link to='/'><Button name='Pedidos'/></Link>
         </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>

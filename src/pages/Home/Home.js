@@ -26,7 +26,7 @@ const Home = () => {
       {
         (user?.user?.name) && isButtonVisible &&
         <div>
-          <p>{`Bienvenido  ${user?.user?.name}`}</p>
+          <p>{`Bienvenido/a  ${user?.user?.name}`}</p>
           <Button
             onClick= {handleClick}
             name='Cerrar sesión'

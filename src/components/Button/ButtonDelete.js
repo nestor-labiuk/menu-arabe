@@ -6,11 +6,20 @@ function ButtonDelete(props) {
     window.location.reload(true)
   }
   const storageid = () => {
-    localStorage.setItem('idd',props.name)
+    localStorage.setItem('idd', props.name)
   }
+
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const Delete = () => {
     const iddel = localStorage.getItem('idd')
-    fetch(`http://localhost:8080/api/menu/${iddel}`, { method: 'DELETE' })
+    fetch(`http://localhost:8080/api/menu/${iddel}`, {
+      method: 'DELETE',
+      headers: {
+        'accesstoken': `${token}`
+      }
+    })
       .then(async response => {
         const data = await response.json();
         if (!response.ok) {
@@ -21,10 +30,10 @@ function ButtonDelete(props) {
       .catch(error => {
         console.error('Error:', error);
       });
-      toast.success('Eliminando...', {
-        theme: 'dark'
-      })
-      setTimeout(reinicio,3000)
+    toast.success('Eliminando...', {
+      theme: 'dark'
+    })
+    setTimeout(reinicio, 3000)
   }
 
   return (
@@ -45,7 +54,7 @@ function ButtonDelete(props) {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" className="btn btn-primary"  data-bs-dismiss="modal" onClick={Delete} >Eliminar menú</button>
+              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Delete} >Eliminar menú</button>
             </div>
           </div>
         </div>

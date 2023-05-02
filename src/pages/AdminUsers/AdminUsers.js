@@ -6,12 +6,19 @@ import AdmUserCard from '../../components/AdmUserCard/AdmUserCard'
 
 function AdminUsers() {
   const [users, setUsers] = useState([])
-  // para paginacion
   const [currentUsers, setCurrentUsers] = useState(0)
   const [totalUsers, setTolalUsers] = useState(0)
-  //
+  
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const fetchUsers = async (from) => {
-    const response = await fetch(`http://localhost:8080/api/users?from=${from}`)
+    const response = await fetch(`http://localhost:8080/api/users?from=${from}`,{
+      method: 'GET',
+      headers: { 
+        'accesstoken': `${token}`,
+      }
+    })
     const data = await response.json()
     setTolalUsers(data.total)
     setUsers(data.users)
@@ -33,7 +40,8 @@ function AdminUsers() {
   // 
 
   useEffect(() => {
-    fetchUsers(currentUsers)
+    fetchUsers(currentUsers)  
+    // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [currentUsers])
 
     return (

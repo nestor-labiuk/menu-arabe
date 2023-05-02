@@ -14,7 +14,6 @@ import Nav from './components/Navbar/Navbar'
 import Foot from './components/Footer/Footer'
 
 function App() {
- 
   return (
     <>
         <Nav/>  
@@ -29,9 +28,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/admin/users' element={<AdminUsers />} />
         <Route path='/admin/users/:id' element={<EditUser />} />
-      
       </Routes>
-       <Foot/>
+        <Foot/>
     </>
   );
 }
