@@ -4,7 +4,6 @@ import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 const FormRegister = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
