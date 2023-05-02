@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import fondo from '../../assets/img/Gold White and Black Simple Restaurant Logo.png';
 import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button'
+import './navbar.css' 
 
 
 const Navbar = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
   const [isButtonVisible, setIsButtonVisible] = useState(true)
 
   const userJSON = sessionStorage.getItem('loguedUser')
-  const mUser = JSON.parse(userJSON)
+  const mUser  = JSON.parse(userJSON)
 
   useEffect(() => {
     setUser(mUser)
@@ -20,8 +21,8 @@ const Navbar = () => {
   const handleClick = () => {
     sessionStorage.clear()
     setIsButtonVisible(false)
+    window.location.reload()
   }
-
 
 
 
@@ -74,16 +75,23 @@ const Navbar = () => {
                   Menú
                 </Link>
               </li>
+              
+              { (user?.user?.isAdmin) &&
+                <div className='d-flex '>
+                  <Link className='text-decoration-none text-white admin' to='admin'>Administración</Link>
+                </div>
+              }
+              
               {
                 (user?.user?.name) && isButtonVisible &&
                 <div className=' d-flex mt-2 '>
-                  <li>
-                    <p className='text-white d-none d-md-block'>{`Bienvenido/a  ${user?.user?.name}`}</p>
+                  <li className=''>
+                    <p className='text-white d-none d-md-block mx-3' >{`Bienvenido/a  ${user?.user?.name}`}</p>
                   </li>
                   <li
                     onClick={handleClick}
-                    className='main-button text-white'
-                  ><Button name='Cerrar' className='nav-button'/>   
+                    className='main-button text-white nav-close mt-2 mt-md-0  '
+                    >Cerrar   
                   </li>
                 </div>
               }
