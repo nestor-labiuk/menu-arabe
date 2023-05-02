@@ -9,9 +9,17 @@ function ButtonDeleteUser(props) {
     localStorage.setItem('iddu',props.name)
   }
 
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const Delete = () => {
     const iddel = localStorage.getItem('iddu')
-    fetch(`http://localhost:8080/api/users/${iddel}`, { method: 'DELETE' })
+    fetch(`http://localhost:8080/api/users/${iddel}`, {
+      method: 'DELETE',
+      headers: {
+        'accesstoken': `${token}`
+      }
+    })
       .then(async response => {
         const data = await response.json();
         if (!response.ok) {

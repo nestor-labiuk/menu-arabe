@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button/Button'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './login.css';
 
 const Login = () => {
+  const navigateTo = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const createUsers = async (body) => {
     try {
@@ -26,7 +27,7 @@ const Login = () => {
           theme: 'dark'
         })
         sessionStorage.setItem('loguedUser', JSON.stringify(data) )
-        setTimeout(moveback,3000)
+        setTimeout(navigate,3000)
       }
     } catch (error) {
       console.log(error)
@@ -34,8 +35,8 @@ const Login = () => {
     }
   }
   
-  const moveback = () => {
-    window.history.go(-1)
+  const navigate= () => {
+    navigateTo('/')
   }
 
   const onSubmit = body => {

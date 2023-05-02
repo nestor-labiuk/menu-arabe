@@ -16,7 +16,7 @@ function AdminMenu() {
     const response = await fetch('http://localhost:8080/api/menu',{
       method: 'GET',
       headers: { 
-        'accesstoken': `${token}`,
+        'accesstoken': `${token}`
       }
     })
     const data = await response.json()

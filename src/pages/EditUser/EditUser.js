@@ -8,12 +8,16 @@ import React, { useEffect, useState } from 'react'
 
 function EditUser() {
   const [user, setUser] = useState()
+
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const id = localStorage.getItem('id')
   console.log(id)
   const { register, handleSubmit, formState: { errors},setValue} = useForm()
 
   const fetchUser = async () => {
-    const response = await fetch(`http://localhost:8080/api/users/${id}`)
+    const response = await fetch(`http://localhost:8080/api/users/${id}`,)
     const data = await response.json()
     setUser(data.user)
     console.log(data)
@@ -36,7 +40,10 @@ function EditUser() {
       const response = await fetch(`http://localhost:8080/api/user/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'accesstoken': `${token}`
+        }
       })
       const data = await response.json()
 

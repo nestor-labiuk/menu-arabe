@@ -8,11 +8,16 @@ import React, { useEffect, useState } from 'react'
 
 function EditMenu() {
   const [menu, setMenus] = useState()
+
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const id = localStorage.getItem('id')
   const { register, handleSubmit, formState: { errors},setValue} = useForm()
 
   const fetchMenu = async () => {
     const response = await fetch(`http://localhost:8080/api/menu/${id}`)
+  
     const data = await response.json()
     setMenus(data.menu)
     setValue('name',data.menu.name)
@@ -33,7 +38,9 @@ function EditMenu() {
       const response = await fetch(`http://localhost:8080/api/menu/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json',
+        'accesstoken': `${token}`,
+      }
       })
       const data = await response.json()
 
