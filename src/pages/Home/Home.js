@@ -12,8 +12,9 @@ const Home = () => {
   const mUser = JSON.parse(userJSON)
 
   useEffect(()=>{
-    setUser(mUser) 
-  }, [] )
+    setUser(mUser)
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, [isButtonVisible] )
  
   const handleClick = () => {
     sessionStorage.clear()
@@ -25,7 +26,7 @@ const Home = () => {
       {
         (user?.user?.name) && isButtonVisible &&
         <div>
-          <p>{`Bienvenido  ${user?.user?.name}`}</p>
+          <p>{`Bienvenido/a  ${user?.user?.name}`}</p>
           <Button
             onClick= {handleClick}
             name='Cerrar sesión'
@@ -46,7 +47,11 @@ const Home = () => {
           <Link to='/menu'><Button name='Menú' /></Link>
           <Link to='login'><Button name='Logueo' /></Link>
           <Link to='register'><Button name='Registrate' /></Link>
-          <Link to='admin'><Button name='Admin' /></Link>
+          { (user?.user?.isAdmin) &&
+            <div>
+            <Link to='admin'><Button name='Admin' /></Link>
+          </div>
+          }
         </div>
       </div>
     </main>

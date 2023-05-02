@@ -8,22 +8,39 @@ import React, { useEffect, useState } from 'react'
 
 function EditUser() {
   const [user, setUser] = useState()
+
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const id = localStorage.getItem('id')
-  console.log(id)
   const { register, handleSubmit, formState: { errors},setValue} = useForm()
 
   const fetchUser = async () => {
-    const response = await fetch(`http://localhost:8080/api/users/${id}`)
+    const response = await fetch(`http://localhost:8080/api/users/${id}`,{
+      method: 'GET',
+      headers: {
+        'accesstoken': `${token}`
+      }
+    }
+    )
     const data = await response.json()
     setUser(data.user)
-    console.log(data)
     setValue('name',data.user.name)
     setValue('email',data.user.email)
     setValue('adress',data.user.adress)
     setValue('phoneNumber',data.user.phoneNumber)
-    setValue('password',data.user.password)
     setValue('isActive',data.user.isActive)
+    if(data.user.isActive){
+      setValue('isActive',"Available")
+    }else {
+      setValue('isActive',"Unavailable")
+    }
     setValue('isAdmin',data.user.isAdmin)
+    if(data.user.isAdmin){
+      setValue('isAdmin',"AvailableM")
+    }else {
+      setValue('isAdmin',"UnavailableM")
+    }
   }
 
   useEffect(() => {
@@ -31,12 +48,25 @@ function EditUser() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const EditUser = async (body) => {
+  const editUser = async (body) => {
+    if (body.isActive==='Available'){
+      body.isActive=true
+    }else{
+      body.isActive=false
+    }
+    if (body.isAdmin==='AvailableM'){
+      body.isAdmin=true
+    }else{
+      body.isAdmin=false
+    }
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${id}`, {
+      const response = await fetch(`http://localhost:8080/api/users/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'accesstoken': `${token}`
+        }
       })
       const data = await response.json()
 
@@ -53,20 +83,21 @@ function EditUser() {
         toast.success(`Usuario ${body.name} Editado`, {
           theme: 'dark'
         })
-        setTimeout(moveback,3000)
+        setTimeout(moveback,2000)
       }
 
     } catch (error) {
-      toast.error('No se puede registrar el Usuario', {
+      toast.error('No se puedo editar el Usuario', {
         theme: 'dark'
       })
+      console.log(error)
     }
   }
   const moveback = () => {
     window.history.go(-1)
   }
   const onSubmit = body => {
-    EditUser(body)
+    editUser(body)
     
   }
 
@@ -84,15 +115,16 @@ function EditUser() {
             />
             {errors.name?.type === 'required' && <span>Campo requerido</span>}
             {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <label for='state'>Estado</label>
+
+            <label for='isActive'>Estado-Actividad</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
-              <input id="state" name="state" value="0" type="radio" {...register('state')} />
-              <label className='py-0 px-3' for="state">No Disponible</label>
-              <input id="state" name="state" value="1" type="radio" {...register('state',{ required: true})} />
-              <label className='py-0 px-3' for="state">Disponible</label>
-              {errors.state?.type === 'required' && <span>Campo requerido</span>}
-              {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+              <input name="isActive" value="Unavailable" type="radio" {...register('isActive')} />
+              <label className='py-0 px-3' for="isActive">Inactivo</label>
+              <input name="isActive" value="Available" type="radio" {...register('isActive')} />
+              <label className='py-0 px-3' for="isActive">Activo</label>
+              {errors.isActive?.type === 'required' && <span>Campo requerido</span>}
             </div>
+            
             <label for='email'>Email</label>
             <input
               placeholder='email@email.com'
@@ -118,22 +150,15 @@ function EditUser() {
             {errors.phoneNumber?.type === 'required' && <span>Campo requerido</span>}
             {errors.phoneNumber?.type === 'minLength' && <span>Longitud mínima de 7 caracteres</span>}
             {errors.phoneNumber?.type === 'pattern' && <span>Solo números</span>}
-            <label for='password'>Contraseña</label>
-            <input
-              maxLength={12}
-              placeholder='Muysegura1234'
-              type='password' {...register('password', { required: true, minLength: 8 })}
-            />
-            {errors.password?.type === 'required' && <span>Campo requerido</span>}
-            {errors.password?.type === 'minLength' && <span>Longitus mínima de 8 caracteres</span>}
-            <label for='isActive'>Estado</label>
+            <label for='isAdmin'>Estado-admin</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
-              <input id="isActive" name="isActive" value="0" type="radio" {...register('isActive')} />
-              <label className='py-0 px-3' for="isActive">No Activo</label>
-              <input id="isActive" name="isActive" value="1" type="radio" {...register('isActive',{ required: true})} />
-              <label className='py-0 px-3' for="isActive">Activo</label>
-              {errors.isActive?.type === 'required' && <span>Campo requerido</span>}
+              <input name="isAdmin" value="UnavailableM" type="radio" {...register('isAdmin')} />
+              <label className='py-0 px-3' for="isAdmin">No es admin</label>
+              <input name="isAdmin" value="AvailableM" type="radio" {...register('isAdmin')} />
+              <label className='py-0 px-3' for="isAdmin">Es admin</label>
+              {errors.isAdmin?.type === 'required' && <span>Campo requerido</span>}
             </div>
+              <input className='mt-5 register-form-submit' type='submit' value='Editar' />
             </form>
         </div>
         <div className='d-flex justify-content-center p-5'>
