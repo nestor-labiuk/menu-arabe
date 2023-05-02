@@ -39,9 +39,9 @@ const FormRegister = () => {
     }
   }
 
- const navigate = () => {
+  const navigate = () => {
   navigateTo('/login')
- }
+  }
 
   const onSubmit = body => {
     createUsers(body)

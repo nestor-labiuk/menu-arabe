@@ -20,7 +20,7 @@ const FormRegister = () => {
         headers: { 
           'Content-Type': 'application/json',
           'accesstoken': `${token}`
-       }
+      }
       })
       const data = await response.json()
 
