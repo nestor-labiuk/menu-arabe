@@ -7,6 +7,7 @@ import AdmMenuCard from '../../components/AdmMenuCard/AdmMenuCard'
 
 
 function AdminMenu() {
+  
   const [menus, setMenus] = useState([])
   const [currentMenus, setCurrentMenus] = useState(0)
   const [totalMenus, setTolalMenus] = useState(0)
