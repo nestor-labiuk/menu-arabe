@@ -15,21 +15,15 @@ function AdminUsers() {
     const data = await response.json()
     setTolalUsers(data.total)
     setUsers(data.users)
-    console.log(data.total)
   }
   
   // para páginacion
   const handleNexPage = async () => {
-    console.log('entronext')
-    console.log(totalUsers)
-    console.log(currentUsers)
     if(totalUsers > currentUsers + 10){
       setCurrentUsers(currentUsers => currentUsers + 10)
-      console.log('entro if')
     }
   }
   const handlePrevPage = async () => {
-    console.log('entroprev')
     if (currentUsers > 10) {
       setCurrentUsers(currentUsers => currentUsers - 10)
     }else{
@@ -72,12 +66,11 @@ function AdminUsers() {
           <Link to='/admin/menu'><Button name='Menu'/></Link>
           <Link to='/'><Button name='Pedidos'/></Link>
         </div>
-        {/* para paginacion */}
-        <div className='mt-5 mb-3 justify-content-end '>
+        <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>
           <Button name='Anterior' onClick={handlePrevPage}></Button>
+          <h4>{currentUsers}-{(currentUsers)+10} </h4>
           <Button name='Siguiente' onClick={handleNexPage}></Button>
         </div>
-        {/*  */}
       </div>
     </main>
   )
