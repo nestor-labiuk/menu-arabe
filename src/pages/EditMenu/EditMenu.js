@@ -22,6 +22,12 @@ function EditMenu() {
     setMenus(data.menu)
     setValue('name',data.menu.name)
     setValue('state',data.menu.state)
+    if(data.menu.state){
+      setValue('state',"Available")
+    }else {
+      setValue('state',"Unavailable")
+    }
+
     setValue('price',data.menu.price)
     setValue('detail',data.menu.detail)
     setValue('category',data.menu.category)
@@ -34,12 +40,20 @@ function EditMenu() {
   }, [])
 
   const editMenu = async (body) => {
+
+    if (body.state==='Available'){
+      body.state=true
+    }else{
+      body.state=false
+    }
+
     try {
       const response = await fetch(`http://localhost:8080/api/menu/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json',
-        'accesstoken': `${token}`,
+        headers: { 
+          'Content-Type': 'application/json',
+          'accesstoken': `${token}`,
       }
       })
       const data = await response.json()
@@ -57,7 +71,7 @@ function EditMenu() {
         toast.success(`Menú ${body.name} Editado`, {
           theme: 'dark'
         })
-        setTimeout(moveback,3000)
+        setTimeout(moveback,2000)
       }
 
     } catch (error) {
@@ -88,15 +102,16 @@ function EditMenu() {
             />
             {errors.name?.type === 'required' && <span>Campo requerido</span>}
             {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
+
             <label for='state'>Estado</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
-              <input id="state" name="state" value="0" type="radio" {...register('state')} />
-              <label className='py-0 px-3' for="state">No Disponible</label>
-              <input id="state" name="state" value="1" type="radio" {...register('state',{ required: true})} />
+              <input id="state" name="state" value="Available" type="radio" {...register('state')} />
               <label className='py-0 px-3' for="state">Disponible</label>
+              <input id="state" name="state" value="Unavailable" type="radio" {...register('state')} />
+              <label className='py-0 px-3' for="state">No Disponible</label>
               {errors.state?.type === 'required' && <span>Campo requerido</span>}
-              {errors.state?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
             </div>
+
             <label for='price'>Precio</label>
             <input
               placeholder={menu?.price}

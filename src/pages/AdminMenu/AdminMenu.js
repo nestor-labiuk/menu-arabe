@@ -8,25 +8,46 @@ import AdmMenuCard from '../../components/AdmMenuCard/AdmMenuCard'
 
 function AdminMenu() {
   const [menus, setMenus] = useState([])
-
+  const [currentMenus, setCurrentMenus] = useState(0)
+  const [totalMenus, setTolalMenus] = useState(0)
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
  
-  const fetchMenus = async () => {
-    const response = await fetch('http://localhost:8080/api/menu',{
+  const fetchMenus = async (from) => {
+    const response = await fetch(`http://localhost:8080/api/menu?from=${from}`,{
       method: 'GET',
       headers: { 
         'accesstoken': `${token}`
       }
     })
     const data = await response.json()
+    setTolalMenus(data.total)
     setMenus(data.menus)
+  }
+  const handleNexPage = async () => {
+    if(totalMenus > currentMenus + 10){
+      setCurrentMenus(currentMenus => currentMenus + 10)
+    console.log('total')
+    
+  }
+  console.log('next')
+  console.log(currentMenus)
+  console.log(totalMenus)
+  }
+  const handlePrevPage = async () => {
+    if (currentMenus > 10) {
+      setCurrentMenus(currentMenus => currentMenus - 10)
+    }else{
+      setCurrentMenus(currentMenus => currentMenus = 0)
+    }
+    console.log('entroprev')
+    console.log(currentMenus)
   }
   
   useEffect(() => {
-    fetchMenus()
+    fetchMenus(currentMenus)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token])
+  }, [currentMenus,token])
 
 
   return (
@@ -56,8 +77,13 @@ function AdminMenu() {
           <Link to='/admin/menu/registermenu'><Button name='Nuevo Menú'/></Link>
         </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3'>
-          <Link to='/'><Button name='Clientes'/></Link>
+          <Link to='/admin/users'><Button name='Clientes'/></Link>
           <Link to='/'><Button name='Pedidos'/></Link>
+        </div>
+        <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>
+          <Button name='Anterior' onClick={handlePrevPage}></Button>
+          <h4>{currentMenus}-{(currentMenus)+10} </h4>
+          <Button name='Siguiente' onClick={handleNexPage}></Button>
         </div>
       </div>
     </main>
