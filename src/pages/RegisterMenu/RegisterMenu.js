@@ -8,12 +8,18 @@ import { ToastContainer, toast } from 'react-toastify'
 const FormRegister = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
+  const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
+  const token = dataUser?.accesstoken
+
   const createMenu = async (body) => {
     try {
       const response = await fetch('http://localhost:8080/api/menu', {
         method: 'POST',
         body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'accesstoken': `${token}`
+      }
       })
       const data = await response.json()
 

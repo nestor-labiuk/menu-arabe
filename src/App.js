@@ -12,12 +12,12 @@ import Menu from './pages/Menu/Menu'
 import EditUser from './pages/EditUser/EditUser'
 import Nav from './components/Navbar/Navbar'
 import Foot from './components/Footer/Footer'
+import AdminOrders from './pages/AdminOrders/AdminOrders'
 
 function App() {
- 
   return (
     <>
-        <Nav/>  
+      <Nav/>  
       <Routes>
         <Route exact path='/' element={ <Home /> } />
         <Route path='/register' element={<Register />} />
@@ -29,9 +29,9 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/admin/users' element={<AdminUsers />} />
         <Route path='/admin/users/:id' element={<EditUser />} />
-      
+        <Route path='/admin/orders' element={<AdminOrders />} />
       </Routes>
-       <Foot/>
+      <Foot/>
     </>
   );
 }
