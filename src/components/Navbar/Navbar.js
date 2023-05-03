@@ -1,30 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import fondo from '../../assets/img/Gold White and Black Simple Restaurant Logo.png';
-import { useEffect, useState } from 'react';
-import Button from '../../components/Button/Button'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import fondo from '../../assets/img/Gold White and Black Simple Restaurant Logo.png'
+import { useEffect, useState } from 'react'
 import './navbar.css' 
-
 
 const Navbar = () => {
   const [user, setUser] = useState('')
   const [isButtonVisible, setIsButtonVisible] = useState(true)
-
   const userJSON = sessionStorage.getItem('loguedUser')
   const mUser  = JSON.parse(userJSON)
-
   useEffect(() => {
     setUser(mUser)
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [isButtonVisible])
-
   const handleClick = () => {
     sessionStorage.clear()
     setIsButtonVisible(false)
     window.location.reload()
   }
-
-
 
   return (
     <div className='sticky-top'>
@@ -75,13 +68,11 @@ const Navbar = () => {
                   Menú
                 </Link>
               </li>
-              
               { (user?.user?.isAdmin) &&
                 <div className='d-flex '>
                   <Link className='text-decoration-none text-white admin' to='admin'>Administración</Link>
                 </div>
               }
-              
               {
                 (user?.user?.name) && isButtonVisible &&
                 <div className=' d-flex mt-2 '>
@@ -100,7 +91,7 @@ const Navbar = () => {
         </div>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

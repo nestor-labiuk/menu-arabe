@@ -1,5 +1,5 @@
 .menu-card{
-  background-color: white;
+  background-color: var(--color-white);
   border: 5px solid var(--color-wine);
   border-radius: 8px;
   width: 25rem;
@@ -10,7 +10,7 @@
 .menu-card img {
   width: 20rem;
   height: 15rem;
-  border: 2px solid black
+  border: 2px solid var(--color-black);
 }
 
 .menu-card p {

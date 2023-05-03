@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
 import Admin from './pages/Admin/Admin'
@@ -33,7 +32,7 @@ function App() {
       </Routes>
       <Foot/>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,23 +1,20 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 import Button from '../../components/Button/Button'
-import { Link , useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import './login.css';
+import './login.css'
 
 const Login = () => {
-  const navigateTo = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const createUsers = async (body) => {
     try {
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch('https://menu-arabe-api.onrender.com/api/login', {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
       })
       const data = await response.json()
-      console.log(data)
-      console.log(data.message)
       if (data.messageError) {
         toast.error((data.messageError), {
           theme: 'dark'
@@ -30,19 +27,19 @@ const Login = () => {
         setTimeout(navigate,3000)
       }
     } catch (error) {
-      console.log(error)
-      console.log(error.message)
-    }
+      toast.error('Error al ingresar el usuario', {
+        theme: 'dark'
+      })  
+    } 
   }
-  
   const navigate= () => {
-    navigateTo('/')
+    window.location.pathname="/"
   }
-
   const onSubmit = body => {
     createUsers(body)
     reset()
   }
+
   return (
     <div>
       <div className='login-main p-5'>
@@ -64,7 +61,6 @@ const Login = () => {
             />
             {errors.password?.type === 'required' && <span>Este campo es obligatorio</span>}
             <div className='d-flex justify-content-center pt-5'>
-      
               <Button name='Ingresar' >
                 <input type='submit' value='Registrarse' /></Button>
             </div>
@@ -78,4 +74,5 @@ const Login = () => {
     </div>
   )
 }
+
 export default Login

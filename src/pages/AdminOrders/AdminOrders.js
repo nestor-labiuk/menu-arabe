@@ -7,16 +7,13 @@ import AdminOrderCard from '../../components/AdminOrderCard/AdminOrderCard'
 function AdminOrders() {
   const [orders, setOrders] = useState([])
   const fetchOrders = async () => {
-    const response = await fetch('http://localhost:8080/api/orders')
+    const response = await fetch('https://menu-arabe-api.onrender.com/api/orders')
     const data = await response.json()
     setOrders(data.orders)
   }
-
   useEffect(() => {
     fetchOrders()
   }, [])
-
-
   
   return (
     <main className='mx-0 pt-5 adminMenu'>
@@ -33,7 +30,6 @@ function AdminOrders() {
         </tr>
       </div>
       <div className='colorBack' >
-
       {
         orders?.length === 0 || orders === undefined
           ? <h3 className='mt-5 text-white text-center'> Cargando Pedidos... </h3>
@@ -50,6 +46,4 @@ function AdminOrders() {
   )
 }
 
-
 export default AdminOrders
-
