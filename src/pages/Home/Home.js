@@ -1,5 +1,7 @@
 import './Home.css'
 import fondo from '../../assets/img/background.jpg'
+import { Link } from 'react-router-dom'
+import Button from '../../components/Button/Button'
 
 const Home = () => {
 
@@ -14,6 +16,9 @@ const Home = () => {
         <p className='fs-5 p-3 main-p'>Te invitamos a visitar nuestro local en el barrio Gral. Paz. </p>
       </div>
       <div className='d-flex justify-content-center'>
+        <Link to="/menu" className="nav-link text-white">
+          <Button name='Mirá nuestro Menú' className="homeButton mb-5"/>
+        </Link>
       </div>
     </main>
   )
