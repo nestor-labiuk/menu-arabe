@@ -3,31 +3,40 @@ import './adminMenu.css'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import AdmMenuCard from '../../components/AdmMenuCard/AdmMenuCard'
-// import useToken from '../../CustomHooks/useToken'
-
 
 function AdminMenu() {
   const [menus, setMenus] = useState([])
-
+  const [currentMenus, setCurrentMenus] = useState(0)
+  const [totalMenus, setTolalMenus] = useState(0)
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
- 
-  const fetchMenus = async () => {
-    const response = await fetch('http://localhost:8080/api/menu',{
+  const fetchMenus = async (from) => {
+    const response = await fetch(`https://menu-arabe-api.onrender.com/api/menu?from=${from}`,{
       method: 'GET',
       headers: { 
         'accesstoken': `${token}`
       }
     })
     const data = await response.json()
+    setTolalMenus(data.total)
     setMenus(data.menus)
   }
-  
+  const handleNexPage = async () => {
+    if(totalMenus > currentMenus + 10){
+      setCurrentMenus(currentMenus => currentMenus + 10)
+  }
+  }
+  const handlePrevPage = async () => {
+    if (currentMenus > 10) {
+      setCurrentMenus(currentMenus => currentMenus - 10)
+    }else{
+      setCurrentMenus(currentMenus => currentMenus = 0)
+    }
+  }
   useEffect(() => {
-    fetchMenus()
+    fetchMenus(currentMenus)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token])
-
+  }, [currentMenus,token])
 
   return (
     <main className='mx-0 pt-5 adminMenu'>
@@ -44,7 +53,6 @@ function AdminMenu() {
         </tr>
       </div>
       <div className='colorBack' >
-
       {
         menus?.length === 0 || menus === undefined
           ? <h3 className='mt-5 text-white text-center'> Cargando Menús... </h3>
@@ -56,8 +64,13 @@ function AdminMenu() {
           <Link to='/admin/menu/registermenu'><Button name='Nuevo Menú'/></Link>
         </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3'>
-          <Link to='/'><Button name='Clientes'/></Link>
-          <Link to='/'><Button name='Pedidos'/></Link>
+          <Link to='/admin/users'><Button name='Clientes'/></Link>
+          <Link to='/admin/orders'><Button name='Pedidos'/></Link>
+        </div>
+        <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>
+          <Button name='Anterior' onClick={handlePrevPage}></Button>
+          <h4>{currentMenus}-{(currentMenus)+10} </h4>
+          <Button name='Siguiente' onClick={handleNexPage}></Button>
         </div>
       </div>
     </main>

@@ -14,7 +14,7 @@ function ButtonDelete(props) {
 
   const Delete = () => {
     const iddel = localStorage.getItem('idd')
-    fetch(`http://localhost:8080/api/menu/${iddel}`, {
+    fetch(`https://menu-arabe-api.onrender.com/api/menu/${iddel}`, {
       method: 'DELETE',
       headers: {
         'accesstoken': `${token}`
@@ -42,7 +42,6 @@ function ButtonDelete(props) {
         <i className="bi bi-trash3-fill px-2 pb-3" ></i>
       </button>
       <ToastContainer />
-
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -60,7 +59,6 @@ function ButtonDelete(props) {
           </div>
         </div>
       </div>
-
     </div>
   )
 }
