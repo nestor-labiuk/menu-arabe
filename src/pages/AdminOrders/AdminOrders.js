@@ -20,13 +20,13 @@ function AdminOrders() {
       <h1 className='text-center pb-3 '>Administración de Pedidos</h1>
       <div className='mx-3'>
         <tr className="d-flex justify-content-center table-responsive">
-          <th className='border border-black col-2 text-center col-sm-2'>Nombre</th>
-          <th className='border border-black col-2 text-center borrar'>Dirección</th>
-          <th className='border border-black col-2 text-center borrar'>Menú</th>
+          <th className='border border-black col-2 text-center borrar'>Nombre</th>
+          <th className='border border-black col-4 text-center col-sm-2'>Dirección</th>
+          <th className='border border-black col-4 text-center col-sm-2'>Menú</th>
           <th className='border border-black col-1 text-center borrar'>$</th>
-          <th className='border border-black col-2 text-center col-sm-2'>Fecha</th>
+          <th className='border border-black col-2 text-center borrar'>Fecha</th>
           <th className='border border-black col-1 text-center borrar'>Estado</th>
-          <th className='border border-black col-1 text-center borrar'>Accion</th>
+          <th className='border border-black col-2 text-center col-sm-1'>Accion</th>
         </tr>
       </div>
       <div className='colorBack' >
