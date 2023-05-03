@@ -2,13 +2,13 @@
   background-color: var(--color-white);
   border: 5px solid var(--color-wine);
   border-radius: 8px;
-  width: 25rem;
-  height: 30rem;
+  width: 20rem;
+  height: 32rem;
   margin-bottom: 20px;
 }
 
 .menu-card img {
-  width: 20rem;
+  width: 18rem;
   height: 15rem;
   border: 2px solid var(--color-black);
 }
