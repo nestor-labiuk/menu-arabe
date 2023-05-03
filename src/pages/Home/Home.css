@@ -1,5 +1,4 @@
 .main {
-  min-height: 100vh;
   background-color: var(--color-wine);
   color: var(--color-white);
 }
@@ -10,4 +9,9 @@
 
 .main-button {
   width: 110px;
+}
+
+.homeButton {
+  width: 170px;
+  height: 60px;
 }
