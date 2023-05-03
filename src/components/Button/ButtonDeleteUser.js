@@ -14,7 +14,7 @@ function ButtonDeleteUser(props) {
 
   const Delete = () => {
     const iddel = localStorage.getItem('iddu')
-    fetch(`https://menu-arabe-api.onrender.com/api/users/${iddel}`, {
+    fetch(`http://localhost:8080/api/users/${iddel}`, {
       method: 'DELETE',
       headers: {
         'accesstoken': `${token}`
@@ -35,12 +35,14 @@ function ButtonDeleteUser(props) {
       })
       setTimeout(reinicio,3000)
   }
+
   return (
     <div>
       <button className='m-2' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={storageid} >
         <i className="bi bi-trash3-fill px-2 pb-3" ></i>
       </button>
       <ToastContainer />
+      
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -58,6 +60,7 @@ function ButtonDeleteUser(props) {
           </div>
         </div>
       </div>
+
     </div>
   )
 }

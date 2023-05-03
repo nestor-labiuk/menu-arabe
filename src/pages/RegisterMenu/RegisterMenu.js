@@ -4,14 +4,17 @@ import Button from '../../components/Button/Button'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const FormRegister = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
+
   const createMenu = async (body) => {
     try {
-      const response = await fetch('https://menu-arabe-api.onrender.com/api/menu', {
+      const response = await fetch('http://localhost:8080/api/menu', {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { 
@@ -20,6 +23,8 @@ const FormRegister = () => {
       }
       })
       const data = await response.json()
+
+
       if (data?.errors) {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'
@@ -34,6 +39,7 @@ const FormRegister = () => {
           theme: 'dark'
         })
       }
+
     } catch (error) {
       toast.error('No se puede registrar el Menú', {
         theme: 'dark'
@@ -111,6 +117,7 @@ const FormRegister = () => {
       </div>
       <ToastContainer />
     </div>
+    
   )
 }
 

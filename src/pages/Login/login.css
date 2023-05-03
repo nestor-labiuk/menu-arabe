@@ -2,15 +2,12 @@
   height: 1200px;
   background-color: var(--color-wine);
 }
-
 .login-title {
   color: var(--color-white);
 }
-
 .login-form {
   width: 250px;
 }
-
 .login-form input {
   border-radius: 5px;
   margin: 5px 0 5px;
@@ -18,13 +15,11 @@
   padding: 7px;
   background-color: var(--color-brown);
 }
-
 .login-form span {
   color: var(--color-beige);
   padding: 0px 0px 5px;
   text-align: center;
 }
-
 .login-form label {
   padding: 12px 0px 0px;
   color: var(--color-white);

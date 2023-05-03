@@ -28,5 +28,6 @@ function AdmMenuCard({ _id, name, state, price, detail,category,image }) {
       </div>
   )
 }
+
 export default AdmMenuCard
 

@@ -9,14 +9,17 @@ import 'react-toastify/dist/ReactToastify.css'
 const FormRegister = () => {
   const navigateTo = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
   const createUsers = async (body) => {
     try {
-      const response = await fetch('https://menu-arabe-api.onrender.com/api/users', {
+      const response = await fetch('http://localhost:8080/api/users', {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
       })
       const data = await response.json()
+      console.log(data)
+
       if (data?.errors) {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'
@@ -27,15 +30,19 @@ const FormRegister = () => {
         })
         setTimeout(navigate,3000)
       }
+      
     } catch (error) {
       toast.error('No se puede registrar el usuario', {
         theme: 'dark'
       })
+      console.log(error)
     }
   }
+
   const navigate = () => {
   navigateTo('/login')
   }
+
   const onSubmit = body => {
     createUsers(body)
     reset()
@@ -83,7 +90,8 @@ const FormRegister = () => {
             <label for='password'>Contraseña</label>
             <input
               maxLength={12}
-              placeholder='Muysegura1234'
+              placeholder='Muysegura1234
+              '
               type='password' {...register('password', { required: true, minLength: 8 })}
             />
             {errors.password?.type === 'required' && <span>Campo requerido</span>}
