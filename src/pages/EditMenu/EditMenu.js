@@ -8,16 +8,12 @@ import React, { useEffect, useState } from 'react'
 
 function EditMenu() {
   const [menu, setMenus] = useState()
-
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
-
   const id = localStorage.getItem('id')
   const { register, handleSubmit, formState: { errors},setValue} = useForm()
-
   const fetchMenu = async () => {
-    const response = await fetch(`http://localhost:8080/api/menu/${id}`)
-  
+    const response = await fetch(`https://menu-arabe-api.onrender.com/api/menu/${id}`)
     const data = await response.json()
     setMenus(data.menu)
     setValue('name',data.menu.name)
@@ -27,28 +23,23 @@ function EditMenu() {
     }else {
       setValue('state',"Unavailable")
     }
-
     setValue('price',data.menu.price)
     setValue('detail',data.menu.detail)
     setValue('category',data.menu.category)
     setValue('image',data.menu.image)
   }
-
   useEffect(() => {
     fetchMenu()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   const editMenu = async (body) => {
-
     if (body.state==='Available'){
       body.state=true
     }else{
       body.state=false
     }
-
     try {
-      const response = await fetch(`http://localhost:8080/api/menu/${id}`, {
+      const response = await fetch(`https://menu-arabe-api.onrender.com/api/menu/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
         headers: { 
@@ -57,7 +48,6 @@ function EditMenu() {
       }
       })
       const data = await response.json()
-
       if (data?.errors) {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'
@@ -73,7 +63,6 @@ function EditMenu() {
         })
         setTimeout(moveback,2000)
       }
-
     } catch (error) {
       toast.error('No se puede registrar el Menú', {
         theme: 'dark'
@@ -85,7 +74,6 @@ function EditMenu() {
   }
   const onSubmit = body => {
     editMenu(body)
-    
   }
 
   return (
@@ -102,7 +90,6 @@ function EditMenu() {
             />
             {errors.name?.type === 'required' && <span>Campo requerido</span>}
             {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-
             <label for='state'>Estado</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input id="state" name="state" value="Available" type="radio" {...register('state')} />
@@ -111,7 +98,6 @@ function EditMenu() {
               <label className='py-0 px-3' for="state">No Disponible</label>
               {errors.state?.type === 'required' && <span>Campo requerido</span>}
             </div>
-
             <label for='price'>Precio</label>
             <input
               placeholder={menu?.price}
@@ -144,7 +130,11 @@ function EditMenu() {
             />
             {errors.image?.type === 'required' && <span>Campo requerido</span>}
             {errors.image?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-            <input className='mt-5 register-form-submit' type='submit' value='Editar' />
+            <div className='d-flex justify-content-center mt-5'>
+                <Button name='Editar'>
+                  <input className='mt-5 register-form-submit' type='submit' value='Editar' />
+                </Button>
+            </div>
           </form>
         </div>
         <div className='d-flex justify-content-center p-5'>

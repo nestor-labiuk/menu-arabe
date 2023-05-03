@@ -8,15 +8,12 @@ import React, { useEffect, useState } from 'react'
 
 function EditUser() {
   const [user, setUser] = useState()
-
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
-
   const id = localStorage.getItem('id')
   const { register, handleSubmit, formState: { errors},setValue} = useForm()
-
   const fetchUser = async () => {
-    const response = await fetch(`http://localhost:8080/api/users/${id}`,{
+    const response = await fetch(`https://menu-arabe-api.onrender.com/api/users/${id}`,{
       method: 'GET',
       headers: {
         'accesstoken': `${token}`
@@ -42,12 +39,10 @@ function EditUser() {
       setValue('isAdmin',"UnavailableM")
     }
   }
-
   useEffect(() => {
     fetchUser()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   const editUser = async (body) => {
     if (body.isActive==='Available'){
       body.isActive=true
@@ -60,7 +55,7 @@ function EditUser() {
       body.isAdmin=false
     }
     try {
-      const response = await fetch(`http://localhost:8080/api/users/${id}`, {
+      const response = await fetch(`https://menu-arabe-api.onrender.com/api/users/${id}`, {
         method: 'PUT',
         body: JSON.stringify(body),
         headers: { 
@@ -69,7 +64,6 @@ function EditUser() {
         }
       })
       const data = await response.json()
-
       if (data?.errors) {
         toast.error(`${data.errors[0].msg}`, {
           theme: 'dark'
@@ -85,12 +79,10 @@ function EditUser() {
         })
         setTimeout(moveback,2000)
       }
-
     } catch (error) {
       toast.error('No se puedo editar el Usuario', {
         theme: 'dark'
       })
-      console.log(error)
     }
   }
   const moveback = () => {
@@ -98,7 +90,6 @@ function EditUser() {
   }
   const onSubmit = body => {
     editUser(body)
-    
   }
 
   return (
@@ -115,7 +106,6 @@ function EditUser() {
             />
             {errors.name?.type === 'required' && <span>Campo requerido</span>}
             {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
-
             <label for='isActive'>Estado-Actividad</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input name="isActive" value="Unavailable" type="radio" {...register('isActive')} />
@@ -124,7 +114,6 @@ function EditUser() {
               <label className='py-0 px-3' for="isActive">Activo</label>
               {errors.isActive?.type === 'required' && <span>Campo requerido</span>}
             </div>
-            
             <label for='email'>Email</label>
             <input
               placeholder='email@email.com'
@@ -158,7 +147,11 @@ function EditUser() {
               <label className='py-0 px-3' for="isAdmin">Es admin</label>
               {errors.isAdmin?.type === 'required' && <span>Campo requerido</span>}
             </div>
-              <input className='mt-5 register-form-submit' type='submit' value='Editar' />
+              <div className='d-flex justify-content-center mt-5'>
+                <Button name='Editar'>
+                  <input className='mt-5 register-form-submit' type='submit' value='Editar' />
+                </Button>
+              </div>
             </form>
         </div>
         <div className='d-flex justify-content-center p-5'>

@@ -14,7 +14,7 @@ function ButtonDelete(props) {
 
   const Delete = () => {
     const iddel = localStorage.getItem('idd')
-    fetch(`http://localhost:8080/api/menu/${iddel}`, {
+    fetch(`https://menu-arabe-api.onrender.com/api/menu/${iddel}`, {
       method: 'DELETE',
       headers: {
         'accesstoken': `${token}`

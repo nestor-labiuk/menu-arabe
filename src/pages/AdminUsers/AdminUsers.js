@@ -8,12 +8,10 @@ function AdminUsers() {
   const [users, setUsers] = useState([])
   const [currentUsers, setCurrentUsers] = useState(0)
   const [totalUsers, setTolalUsers] = useState(0)
-  
   const dataUser = JSON.parse(sessionStorage.getItem('loguedUser'))
   const token = dataUser?.accesstoken
-
   const fetchUsers = async (from) => {
-    const response = await fetch(`http://localhost:8080/api/users?from=${from}`,{
+    const response = await fetch(`https://menu-arabe-api.onrender.com/api/users?from=${from}`,{
       method: 'GET',
       headers: { 
         'accesstoken': `${token}`,
@@ -23,8 +21,6 @@ function AdminUsers() {
     setTolalUsers(data.total)
     setUsers(data.users)
   }
-  
-  // para páginacion
   const handleNexPage = async () => {
     if(totalUsers > currentUsers + 10){
       setCurrentUsers(currentUsers => currentUsers + 10)
@@ -37,8 +33,6 @@ function AdminUsers() {
       setCurrentUsers(currentUsers => currentUsers = 0)
     }
   }
-  // 
-
   useEffect(() => {
     fetchUsers(currentUsers)  
     // eslint-disable-next-line react-hooks/exhaustive-deps  
@@ -58,8 +52,7 @@ function AdminUsers() {
           <th className='border border-black col-3 text-center col-sm-1'>Opc</th>
         </tr>
       </div>
-      <div className='colorBack' >
-
+      <div className='colorBack'>
       {
         users?.length === 0 || users === undefined
           ? <h3 className='mt-5 text-white text-center'> Cargando Usuarios... </h3>
@@ -67,12 +60,9 @@ function AdminUsers() {
       }    
       </div>
       <div className='d-flex flex-column justify-content-center align-items-center mt-5'>
-        <div className='d-flex justify-content-around main-admin-buttons mt-2 mb-5'>
-          <Link to='/admin/menu/registermenu'><Button name='Nuevo Menu'/></Link>
-        </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3'>
           <Link to='/admin/menu'><Button name='Menu'/></Link>
-          <Link to='/'><Button name='Pedidos'/></Link>
+          <Link to='/admin/orders'><Button name='Pedidos'/></Link>
         </div>
         <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>
           <Button name='Anterior' onClick={handlePrevPage}></Button>

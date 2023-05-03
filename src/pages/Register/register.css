@@ -9,7 +9,6 @@
 
 .register-form{
   width: 250px;
- 
 }
 
 .register-form input{
@@ -19,14 +18,15 @@
   padding: 7px;
   background-color: var(--color-brown);
 }
- .register-form span{
+
+.register-form span{
   color: var(--color-beige);
   padding: 0px 0px 5px;
   text-align: center;
- }
+}
 
- .register-form label{
+.register-form label{
   padding: 12px 0px 0px;
   color: var(--color-white);
   text-align: center;
- }
+}

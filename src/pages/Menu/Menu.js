@@ -6,24 +6,19 @@ import Button from '../../components/Button/Button'
 
 const Menu = () => {
   const user = JSON.parse(sessionStorage.getItem('loguedUser'))
-  console.log(user)
-
   const [menus, setMenus] = useState([])
   const [currentMenus, setCurrentMenus] = useState(0)
   const [totalMenus, setTolalMenus] = useState(0)
-
   const fetchMenus = async (from)=>{
-    const response = await fetch(`http://localhost:8080/api/menu?from=${from}`)
+    const response = await fetch(`https://menu-arabe-api.onrender.com/api/menu?from=${from}`)
     const data = await response.json()
     setMenus(data.menus)
     setTolalMenus(data.total)
   }
-
   const handleNexPage = async () => {
     if(totalMenus > currentMenus + 10){
       setCurrentMenus(currentMenus => currentMenus + 10)    
   }
-
   }
   const handlePrevPage = async () => {
     if (currentMenus > 10) {
@@ -32,7 +27,6 @@ const Menu = () => {
       setCurrentMenus(currentMenus => currentMenus = 0)
     }
   }
-  
   useEffect(()=>{
     fetchMenus(currentMenus)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +45,6 @@ const Menu = () => {
               />              
             ))
         }
-
       </div>
       <div className='d-flex align-items-center justify-content-center'>
         <div className='d-flex justify-content-around main-admin-buttons mb-3 mt-3'>
