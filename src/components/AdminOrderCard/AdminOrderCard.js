@@ -10,20 +10,20 @@ function AdminOrderCard({ _id, userName, userAddress, menuName, menuPrice, creat
   return (
       <div className="mx-3">
         <tr className="d-flex justify-content-center table-responsive">
-          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center col-sm-2 ' >{userName}</td>
-          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{userAddress}</td>
-          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{menuName}</td>
+          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{userName}</td>
+          <td className='border border-black d-flex justify-content-center align-items-center col-4 text-center col-sm-2' >{userAddress}</td>
+          <td className='border border-black d-flex justify-content-center align-items-center col-4 text-center col-sm-2' >{menuName}</td>
           <td className='border border-black d-flex justify-content-center align-items-center col-1 text-center borrara' >{menuPrice}</td>
-          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center col-sm-2 '>{dateFormat}</td>
+          <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara '>{dateFormat}</td>
           <td className='border border-black d-flex justify-content-center align-items-center col-1 text-center borrara m-0' >
             { status === true
-              ? <p> Pendiente </p>
-              : <p> Enviado </p>
+              ? <p> Pend </p>
+              : <p> Env </p>
             }
           </td>
           <td className='border border-black d-flex flex-column justify-content-center align-items-center col-2 text-center col-sm-1 '>
             { status === true 
-              && <ButtonEditOrder name='Enviar' id={_id} onClick={ButtonEditOrder}  />
+              && <ButtonEditOrder name='Env' id={_id} onClick={ButtonEditOrder}  />
             }
           </td>
         </tr>

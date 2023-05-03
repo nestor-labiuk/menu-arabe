@@ -23,12 +23,14 @@ const Navbar = () => {
     <div className='sticky-top'>
       <nav className="navbar navbar-expand-md bg-dark">
         <div className="container-fluid">
+        <Link to="/">
           <img
             className="rounded-5"
             src={fondo}
             alt="logo"
             style={{ width: '100px', marginLeft: '20px' }}
-          />
+            />
+          </Link>
           <Link to="/" className="mx-4 navbar-brand text-white fs-2 d-none d-sm-block">
             Menú Árabe
           </Link>
