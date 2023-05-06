@@ -22,10 +22,6 @@ function EditUser() {
     )
     const data = await response.json()
     setUser(data.user)
-    setValue('name',data.user.name)
-    setValue('email',data.user.email)
-    setValue('adress',data.user.adress)
-    setValue('phoneNumber',data.user.phoneNumber)
     setValue('isActive',data.user.isActive)
     if(data.user.isActive){
       setValue('isActive',"Available")
@@ -100,7 +96,7 @@ function EditUser() {
           <form className='d-flex flex-column  register-form w-75' onSubmit={handleSubmit(onSubmit)}>
             <label for='name'>Nombre</label>
             <input
-              placeholder={user?.name}
+              value={user?.name}
               maxLength={30}
               type='text'{...register('name', { required: true, minLength: 3, maxLength: 30 })}
             />
@@ -116,7 +112,7 @@ function EditUser() {
             </div>
             <label for='email'>Email</label>
             <input
-              placeholder='email@email.com'
+              value={user?.email}
               maxLength={40}
               type='email' {...register('email', { required: true, pattern: /\S+@\S+\.\S+/ })}
             />
@@ -124,7 +120,7 @@ function EditUser() {
             {errors.email?.type === 'pattern' && <span>El formato de mail no es válido</span>}
             <label for='adress'>Dirección</label>
             <input
-              placeholder='Mi dirección 1234'
+              value={user?.adress}
               maxLength={30}
               type='text' {...register('adress', { required: true, minLength: 5 })}
             />
@@ -132,7 +128,7 @@ function EditUser() {
             {errors.adress?.type === 'minLength' && <span>Longitud mínima de 5 caracteres</span>}
             <label for='phoneNumber'>Número de teléfono</label>
             <input
-              placeholder='123456789'
+              value={user?.phoneNumber}
               maxLength={18}
               type='text' {...register('phoneNumber', { required: true, minLength: 7, pattern: /^[0-9]+$/ })}
             />
