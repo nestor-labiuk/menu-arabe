@@ -1,16 +1,18 @@
 import { useForm } from 'react-hook-form'
 import './register.css'
 import Button from '../../components/Button/Button'
-import { Link , useNavigate } from 'react-router-dom'
-import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { React, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const FormRegister = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const navigateTo = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const createUsers = async (body) => {
     try {
+      setIsLoading(true)
       const response = await fetch('https://menu-arabe-api.onrender.com/api/users', {
         method: 'POST',
         body: JSON.stringify(body),
@@ -25,22 +27,28 @@ const FormRegister = () => {
         toast.success(`Usuario ${data.user} creado`, {
           theme: 'dark'
         })
-        setTimeout(navigate,3000)
+        setTimeout(navigate, 2500)
       }
     } catch (error) {
       toast.error('No se puede registrar el usuario', {
         theme: 'dark'
       })
     }
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
   }
   const navigate = () => {
-  navigateTo('/login')
+    navigateTo('/login')
   }
   const onSubmit = body => {
     createUsers(body)
+  }
+  const handleclick = () => {
     reset()
   }
-  
+
+
   return (
     <div>
       <div className='register-main p-5'>
@@ -83,14 +91,16 @@ const FormRegister = () => {
             <label for='password'>Contraseña</label>
             <input
               maxLength={12}
-              placeholder='Muysegura1234'
+              placeholder='Entre 8 y 12 caracteres'
               type='password' {...register('password', { required: true, minLength: 8 })}
             />
             {errors.password?.type === 'required' && <span>Campo requerido</span>}
             {errors.password?.type === 'minLength' && <span>Longitus mínima de 8 caracteres</span>}
-            <div className='d-flex justify-content-center pt-5'>
-              <Button name='Registrate' >
-              <input type='submit' value='Registrarse' /></Button>
+            <div className='d-flex justify-content-between pt-5'>
+              <Button name='Registrate' disabled={isLoading}>
+                <input type='submit' value='Registrarse' />
+              </Button>
+              <Button name='Limpiar' onClick={handleclick}></Button>
             </div>
           </form>
         </div>
