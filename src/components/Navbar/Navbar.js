@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import fondo from '../../assets/img/Gold White and Black Simple Restaurant Logo.png'
 import { useEffect, useState } from 'react'
 import './navbar.css' 
@@ -7,17 +7,24 @@ import './navbar.css'
 const Navbar = () => {
   const [user, setUser] = useState('')
   const [isButtonVisible, setIsButtonVisible] = useState(true)
+  const navigateTo = useNavigate()
   const userJSON = sessionStorage.getItem('loguedUser')
   const mUser  = JSON.parse(userJSON)
   useEffect(() => {
     setUser(mUser)
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [isButtonVisible])
+
+ 
+
   const handleClick = () => {
     sessionStorage.clear()
     setIsButtonVisible(false)
+    navigateTo('/')
     window.location.reload()
   }
+
+
 
   return (
     <div className='sticky-top'>
