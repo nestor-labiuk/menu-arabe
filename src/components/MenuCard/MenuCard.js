@@ -57,15 +57,15 @@ const MenuCard = ({
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 text-dark" id="exampleModalLabel"></h1>
+              <h1 className="modal-title fs-5 text-dark" id="exampleModalLabel">Confirmación</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body text-dark">
-              <p></p>
+              <p>¿Confirma el pedido?</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"></button>
-              <button type="button" className="btn btn-primary"  data-bs-dismiss="modal" onClick={makeOrder} ></button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" className="btn btn-primary"  data-bs-dismiss="modal" onClick={makeOrder}>Confirmar</button>
             </div>
           </div>
         </div>
