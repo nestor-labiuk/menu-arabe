@@ -1,6 +1,5 @@
 import React from 'react'
 import './menucard.css'
-import Button from '../Button/Button'
 import { ToastContainer, toast } from 'react-toastify'
 
 const MenuCard = ({
@@ -48,11 +47,10 @@ const MenuCard = ({
         </section>
         <footer className='card-footer pb-2 mt-2'>
           <h5>${Number(price).toFixed(2)}</h5>
-          <Button name='Pedir menú' onClick={makeOrder} />
+          <button className='m-2 buttonMenu' data-bs-toggle="modal" data-bs-target="#exampleModal">Pedir Menú</button>
         </footer>
       </article>
       <div><ToastContainer/></div>
-
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
