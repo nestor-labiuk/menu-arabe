@@ -47,15 +47,15 @@ const MenuCard = ({
         </section>
         <footer className='card-footer pb-2 mt-2'>
           <h5>${Number(price).toFixed(2)}</h5>
-          <button className='m-2 buttonMenu' data-bs-toggle="modal" data-bs-target="#exampleModal">Pedir Menú</button>
+          <button className='m-2 buttonMenu' data-bs-toggle="modal" data-bs-target="#menuModal">Pedir Menú</button>
         </footer>
       </article>
       <div><ToastContainer/></div>
-      <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 text-dark" id="exampleModalLabel">Confirmación</h1>
+              <h1 className="modal-title fs-5 text-dark" id="menuModalLabel">Confirmación</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body text-dark">
