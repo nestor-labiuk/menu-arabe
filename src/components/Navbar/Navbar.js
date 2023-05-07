@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import fondo from '../../assets/img/Gold White and Black Simple Restaurant Logo.png'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './navbar.css' 
 
 const Navbar = () => {
@@ -14,22 +14,29 @@ const Navbar = () => {
     setUser(mUser)
     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [isButtonVisible])
-
- 
-
   const handleClick = () => {
     sessionStorage.clear()
     setIsButtonVisible(false)
     navigateTo('/')
     window.location.reload()
   }
-
-
+  const navbarCollapse = useRef();
+  const handleCollapse = (click) => {
+    if (navbarCollapse.current && !navbarCollapse.current.contains(click.target)) {
+      document.getElementById('navbarSupportedContent').classList.remove('show');
+    }
+  }
+  useEffect(() => {
+    document.addEventListener('click', handleCollapse);
+    return () => {
+      document.removeEventListener('click', handleCollapse);
+    };
+  }, []);
 
   return (
-    <div className='sticky-top'>
-      <nav className="navbar navbar-expand-md bg-dark">
-        <div className="container-fluid">
+    <div className='sticky-top navbar-container' ref={navbarCollapse}>
+      <nav className="navbar navbar-expand-md bg-dark navbar-dark">
+        <div className="container-fluid ">
         <Link to="/">
           <img
             className="rounded-5"
@@ -48,8 +55,7 @@ const Navbar = () => {
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
