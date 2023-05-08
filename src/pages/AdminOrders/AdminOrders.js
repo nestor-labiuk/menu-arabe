@@ -37,7 +37,7 @@ function AdminOrders() {
       }    
       </div>
       <div className='d-flex flex-column justify-content-center align-items-center mt-5'>
-        <div className='d-flex justify-content-around main-admin-buttons mt-2 '>
+        <div className='d-flex justify-content-around main-admin-buttons mt-2  mb-4'>
           <Link to='/admin'><Button name='Volver' /></Link>
           <Link to='/'><Button name='Inicio' /></Link>
         </div>

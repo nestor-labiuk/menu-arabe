@@ -1,7 +1,7 @@
 import './button.css'
 import { ToastContainer, toast } from 'react-toastify'
 
-function ButtonDelete({ name, tipo }) {
+function ButtonDelete({ name, type }) {
   const reinicio = () => {
     window.location.reload(true)
   }
@@ -50,11 +50,11 @@ function ButtonDelete({ name, tipo }) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body text-dark">
-              <p>¿Está seguro de eliminar el {tipo}?</p>
+              <p>¿Está seguro de eliminar el {type}?</p>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Delete} >Eliminar {tipo}</button>
+              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={Delete} >Eliminar {type}</button>
             </div>
           </div>
         </div>
