@@ -19,7 +19,7 @@ function AdmMenuCard({ _id, name, state, price, detail,category,image }) {
           <td className='border border-black d-flex justify-content-center align-items-center col-2 text-center borrara' >{category}</td>
           <td className='border border-black d-flex justify-content-center align-items-center col-4 text-center col-sm-2 '><img src={image} alt={name} className="w-100 "/></td>
           <td className='border border-black d-flex flex-column justify-content-center align-items-center col-4 text-center col-sm-1 '>
-            <ButtonDelete name={_id} tipo='menú' />
+            <ButtonDelete name={_id} type='menú' />
             <Link to={`/admin/menu/${_id}`}>
               <ButtonEdit name={_id}/>
             </Link>
