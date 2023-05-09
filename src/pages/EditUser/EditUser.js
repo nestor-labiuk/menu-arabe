@@ -22,10 +22,6 @@ function EditUser() {
     )
     const data = await response.json()
     setUser(data.user)
-    setValue('name',data.user.name)
-    setValue('email',data.user.email)
-    setValue('adress',data.user.adress)
-    setValue('phoneNumber',data.user.phoneNumber)
     setValue('isActive',data.user.isActive)
     if(data.user.isActive){
       setValue('isActive',"Available")
@@ -74,7 +70,7 @@ function EditUser() {
         })
       } 
       else {
-        toast.success(`Usuario ${body.name} Editado`, {
+        toast.success(`Usuario ${user?.name} Editado`, {
           theme: 'dark'
         })
         setTimeout(moveback,2000)
@@ -100,12 +96,9 @@ function EditUser() {
           <form className='d-flex flex-column  register-form w-75' onSubmit={handleSubmit(onSubmit)}>
             <label for='name'>Nombre</label>
             <input
-              placeholder={user?.name}
+              value={user?.name}
               maxLength={30}
-              type='text'{...register('name', { required: true, minLength: 3, maxLength: 30 })}
             />
-            {errors.name?.type === 'required' && <span>Campo requerido</span>}
-            {errors.name?.type === 'minLength' && <span>Longitud mínima es 3 caracteres</span>}
             <label for='isActive'>Estado-Actividad</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input name="isActive" value="Unavailable" type="radio" {...register('isActive')} />
@@ -116,29 +109,19 @@ function EditUser() {
             </div>
             <label for='email'>Email</label>
             <input
-              placeholder='email@email.com'
+              value={user?.email}
               maxLength={40}
-              type='email' {...register('email', { required: true, pattern: /\S+@\S+\.\S+/ })}
             />
-            {errors.email?.type === 'required' && <span>Campo requerido</span>}
-            {errors.email?.type === 'pattern' && <span>El formato de mail no es válido</span>}
             <label for='adress'>Dirección</label>
             <input
-              placeholder='Mi dirección 1234'
+              value={user?.adress}
               maxLength={30}
-              type='text' {...register('adress', { required: true, minLength: 5 })}
             />
-            {errors.adress?.type === 'required' && <span>Campo requerido</span>}
-            {errors.adress?.type === 'minLength' && <span>Longitud mínima de 5 caracteres</span>}
             <label for='phoneNumber'>Número de teléfono</label>
             <input
-              placeholder='123456789'
+              value={user?.phoneNumber}
               maxLength={18}
-              type='text' {...register('phoneNumber', { required: true, minLength: 7, pattern: /^[0-9]+$/ })}
             />
-            {errors.phoneNumber?.type === 'required' && <span>Campo requerido</span>}
-            {errors.phoneNumber?.type === 'minLength' && <span>Longitud mínima de 7 caracteres</span>}
-            {errors.phoneNumber?.type === 'pattern' && <span>Solo números</span>}
             <label for='isAdmin'>Estado-admin</label>
             <div className='d-flex flex-fill align-items-center justify-content-center pt-3'>
               <input name="isAdmin" value="UnavailableM" type="radio" {...register('isAdmin')} />
