@@ -2,16 +2,16 @@
 Proyecto final Rolling Code School
 </h1>
 
-<div align="center">
+
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS5](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) 
-</div>
+
 
 El objetivo del proyecto es crear una aplicacion funcional en react que permita realizar un pedido de comida dentro de las opciones que se muestran en el menú.
 
 Imagenes:
 <div align="center">
-<img width="1000" alt="image" https://github.com/nestor-labiuk/menu-arabe/blob/develop/public/imgMD1.png>
-<img width="400" alt="image" https://github.com/nestor-labiuk/menu-arabe/blob/develop/public/imgMD2.png>
+<img width="341" alt="image" src="https://raw.githubusercontent.com/nestor-labiuk/menu-arabe/develop/public/imgMD1.png">
+<img width="950" alt="image" src="https://raw.githubusercontent.com/nestor-labiuk/menu-arabe/develop/public/imgMD2.png">
 </div>
 
 
